@@ -22,12 +22,41 @@ exports.createUser = (req, res, next) => {
 		res.status(201).json({ message: "User created successfully." });
 
 		// Close the database connection after the response is sent
-		db.close(err => {
-			if (err) {
-				console.error("Error closing the database:", err.message);
-			} else {
-				console.log("Database connection closed in userController.");
-			}
-		});
+		// db.close(err => {
+		// 	if (err) {
+		// 		console.error("Error closing the database:", err.message);
+		// 	} else {
+		// 		console.log("Database connection closed in userController.");
+		// 	}
+		// });
+	});
+};
+
+exports.getUsers = (req, res, next) => {
+	// Retrieve all users from the "users" table
+	const query = "SELECT * FROM users";
+	db.all(query, [], (err, users) => {
+		if (err) {
+			return res.status(500).json({ error: "Error fetching users." });
+		}
+		res.status(200).json({ users });
+	});
+};
+
+exports.getUserByName = (req, res, next) => {
+	const { id } = req.params;
+
+	// Retrieve a user by id from the "users" table
+	const query = "SELECT * FROM users WHERE id = ?";
+	db.get(query, [id], (err, user) => {
+		if (err) {
+			return res.status(500).json({ error: "Error fetching user by id." });
+		}
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found." });
+		}
+
+		res.status(200).json({ user });
 	});
 };
