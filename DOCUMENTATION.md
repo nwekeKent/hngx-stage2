@@ -2,6 +2,8 @@
 
 This documentation provides detailed information about the API endpoints, including standard request and response formats, sample usage, known limitations, and setup instructions.
 
+BASE_URL: https://kent-hng-server.onrender.com
+
 ## API Endpoints
 
 ### Create User
