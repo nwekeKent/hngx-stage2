@@ -127,6 +127,17 @@ Content-Type: application/json
 }
 ```
 
+**Response:**
+
+```json
+Status: 201 OK
+Content-Type: application/json
+
+{
+  "message": "User Created successfully"
+}
+```
+
 ### Get User by ID or Name
 
 **Request:**
@@ -136,6 +147,11 @@ GET /api/1
 or
 GET /api/Festus
 
+```
+
+**Response:**
+
+```json
 Status: 200 OK
 Content-Type: application/json
 
@@ -156,14 +172,17 @@ Content-Type: application/json
 {
   "name": "Jane Doe"
 }
+```
 
+**Response:**
+
+```json
 Status: 200 OK
 Content-Type: application/json
 
 {
   "message": "User name updated successfully."
 }
-
 
 ```
 
@@ -173,7 +192,11 @@ Content-Type: application/json
 
 ```json
 DELETE /api/1
+```
 
+**Response:**
+
+```json
 Status: 200 OK
 Content-Type: application/json
 
