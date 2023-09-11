@@ -24,20 +24,20 @@ Our Express application is a simple user management system that allows you to pe
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/nwekeKent/hngx-stage2.git
-   cd hngx-stage2
+    git clone https://github.com/nwekeKent/hngx-stage2.git
+    cd hngx-stage2
    ```
 
 2. Install dependencies
 
    ```shell
-   npm install
+    npm install
    ```
 
 3. Start Server
 
    ```shell
-     npm start
+    npm start
    ```
 
 ## Usage
