@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/api", userControllers.getUsers);
 
 // get a user using the user id
-router.get("/api/:id", userControllers.getUserById);
+router.get("/api/:idOrName", userControllers.getUserByIdOrName);
 
 // create a new user
 router.post("/api", userControllers.createUser);

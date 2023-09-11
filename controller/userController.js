@@ -43,21 +43,45 @@ exports.getUsers = (req, res, next) => {
 	});
 };
 
-exports.getUserById = (req, res, next) => {
-	const { id } = req.params;
+// exports.getUserById = (req, res, next) => {
+// 	const { id } = req.params;
 
-	// Retrieve a user by id from the "users" table
-	const query = "SELECT * FROM users WHERE id = ?";
-	db.get(query, [id], (err, user) => {
+// 	// Retrieve a user by id from the "users" table
+// 	const query = "SELECT * FROM users WHERE id = ?";
+// 	db.get(query, [id], (err, user) => {
+// 		if (err) {
+// 			return res.status(500).json({ error: "Error fetching user by id." });
+// 		}
+
+// 		if (!user) {
+// 			return res.status(404).json({ error: "User not found." });
+// 		}
+
+// 		res.status(200).json(user);
+// 	});
+// };
+
+exports.getUserByIdOrName = (req, res, next) => {
+	const { idOrName } = req.params;
+
+	// Check if the provided parameter is a number (id) or a string (name)
+	const isId = !isNaN(idOrName);
+	const query = isId
+		? "SELECT * FROM users WHERE id = ?"
+		: "SELECT * FROM users WHERE name = ?";
+
+	const param = isId ? parseInt(idOrName, 10) : idOrName;
+
+	db.get(query, [param], (err, user) => {
 		if (err) {
-			return res.status(500).json({ error: "Error fetching user by id." });
+			return res.status(500).json({ error: "Error fetching user." });
 		}
 
 		if (!user) {
 			return res.status(404).json({ error: "User not found." });
 		}
 
-		res.status(200).json(user);
+		res.status(200).json({ user });
 	});
 };
 
