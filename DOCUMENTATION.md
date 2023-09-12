@@ -110,6 +110,7 @@ Content-Type: application/json
 {
   "name": "John Doe"
 }
+
 ```
 
 **Response:**
