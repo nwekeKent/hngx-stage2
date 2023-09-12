@@ -4,9 +4,6 @@ const userControllers = require("../controller/userController");
 
 const router = express.Router();
 
-// // get all users
-router.get("/api", userControllers.getUsers);
-
 // get a user using the user id
 router.get("/api/:id", userControllers.getUserById);
 
