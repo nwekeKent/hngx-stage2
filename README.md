@@ -10,7 +10,6 @@ This documentation provides an overview of our Express application and explains 
 - [API Endpoints](#api-endpoints)
 
   - [Create User](#create-user)
-  - [Get All Users](#get-all-users)
   - [Get User by ID](#get-user-by-id)
   - [Update User Name](#update-user-name)
   - [Delete User by ID](#delete-user-by-id)
@@ -61,14 +60,6 @@ Once the server is running, you can use API client tools (e.g., Postman, cURL) t
   - `400 Bad Request` if the request is invalid E.g The name passed is not a string, or the name is not passed at all.
 
   - `500 Internal Server Error` if there is an issue with database operations.
-
-## Get All Users
-
-- URL: `/api `
-- HTTP Method: GET
-- Response
-  - `200 OK` with a JSON array of users
-  - `500 Internal Server Error` if there is an issue with database operations
 
 ## Get User by ID
 

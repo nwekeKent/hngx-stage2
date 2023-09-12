@@ -32,23 +32,6 @@ BASE_URL: https://kent-hng-server.onrender.com
 
     - `500 Internal Server Error` if there is an issue with database operations.
 
-### Get All Users
-
-- **Endpoint:** `/api`
-- **HTTP Method:** GET
-
-- **Response Format:**
-
-  - Status Code: 200 OK
-  - Content-Type: application/json
-  - Body: An array of user objects.
-    - `id` (integer): The user's ID.
-    - `name` (string): The user's name.
-
-- Other Responses:
-  - `200 OK` with a JSON array of users
-  - `500 Internal Server Error` if there is an issue with database operations
-
 ### Get User by ID or Name
 
 - **Endpoint:** `/api/:idOrName`
@@ -140,14 +123,12 @@ Content-Type: application/json
 }
 ```
 
-### Get User by ID or Name
+### Get User by ID
 
 **Request:**
 
 ```json
 GET /api/1
-or
-GET /api/Festus
 
 ```
 
