@@ -23,6 +23,17 @@ exports.createUser = (req, res, next) => {
 	});
 };
 
+exports.getUsers = (req, res, next) => {
+	// Retrieve all users from the "users" table
+	const query = "SELECT * FROM users";
+	db.all(query, [], (err, users) => {
+		if (err) {
+			return res.status(500).json({ error: "Error fetching users." });
+		}
+		res.status(200).json({ users });
+	});
+};
+
 exports.getUserById = (req, res, next) => {
 	const { id } = req.params;
 
