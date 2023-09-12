@@ -26,7 +26,7 @@ BASE_URL: https://kent-hng-server.onrender.com
 
   - Other Responses:
 
-    - `201 Created` if the user is successfully created. A an JSON object (`{ message: "User created successfully." }`) is returned.
+    - `201 Created` if the user is successfully created. A an JSON object containing created user is returned
 
     - `400 Bad Request` if the request is invalid E.g The name passed is not a string, or the name is not passed at all.
 
@@ -71,7 +71,7 @@ BASE_URL: https://kent-hng-server.onrender.com
   - Status Code: 200 OK
   - Content-Type: application/json
   - Body:
-    - `message`: "User name updated successfully."
+    - A JSON object containing the updated user details is returned
 
 - Other Responses:
   - `400 Bad Request` if the request is invalid E.g The name passed is not a string, or the name is not passed at all.
@@ -91,7 +91,7 @@ BASE_URL: https://kent-hng-server.onrender.com
   - Status Code: 200 OK
   - Content-Type: application/json
   - Body:
-    - `message`: "User deleted successfully."
+    - A JSON object containing the deleted user is returned
 
 - Other Responses:
   - `404 Not Found` if the user with the specified ID is not found.
@@ -119,7 +119,8 @@ Status: 201 OK
 Content-Type: application/json
 
 {
-  "message": "User Created successfully"
+"id": 1,
+ "name": "John Doe
 }
 ```
 
@@ -163,8 +164,10 @@ Content-Type: application/json
 Status: 200 OK
 Content-Type: application/json
 
+
 {
-  "message": "User name updated successfully."
+"id": 1,
+ "name": "Jane Doe
 }
 
 ```
@@ -184,7 +187,8 @@ Status: 200 OK
 Content-Type: application/json
 
 {
-  "message": "User deleted successfully."
+"id": 1,
+ "name": "Jane Doe
 }
 
 ```

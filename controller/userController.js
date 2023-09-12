@@ -14,20 +14,25 @@ exports.createUser = (req, res, next) => {
 	}
 
 	// Insert the new user into the database
-	const query = "INSERT INTO users (name) VALUES (?)";
-	db.run(query, [name], err => {
+	const query = db.prepare("INSERT INTO users (name) VALUES (?)");
+	query.run([name], err => {
 		if (err) {
 			return res.status(500).json({ error: "Error creating user." });
 		}
 
-		const userId = result.lastID;
+		const userId = query.lastID;
+
 		const selectQuery = "SELECT * FROM users WHERE id = ?";
 		db.get(selectQuery, [userId], (err, user) => {
 			if (err) {
 				return res.status(500).json({ error: "Error fetching created user" });
 			}
 
-			return res.status(201).json(user);
+			if (!user) {
+				return res.status(404).json({ error: "User not found." });
+			}
+
+			res.status(201).json(user);
 		});
 	});
 };
