@@ -32,13 +32,13 @@ BASE_URL: https://kent-hng-server.onrender.com
 
     - `500 Internal Server Error` if there is an issue with database operations.
 
-### Get User by ID or Name
+### Get User by ID
 
-- **Endpoint:** `/api/:idOrName`
+- **Endpoint:** `/api/:idO`
 - **HTTP Method:** GET
 - **URL Parameters:**
 
-  - `idOrName` (integer or string, required): The user's ID or name.
+  - `id` (integer, required): The user's ID
 
 - **Response Format:**
 
@@ -51,7 +51,7 @@ BASE_URL: https://kent-hng-server.onrender.com
 - Other Responses:
 
   - `200 OK` with a JSON object containing the user's information.
-  - `404 Not Found` if the user with the specified ID or name is not found.
+  - `404 Not Found` if the user with the specified ID is not found.
   - `500 Internal Server Error` if there is an issue with database operations
 
 ### Update User Name
