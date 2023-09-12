@@ -19,18 +19,16 @@ exports.createUser = (req, res, next) => {
 		if (err) {
 			return res.status(500).json({ error: "Error creating user." });
 		}
-		res.status(201).json({ message: "User created successfully." });
-	});
-};
 
-exports.getUsers = (req, res, next) => {
-	// Retrieve all users from the "users" table
-	const query = "SELECT * FROM users";
-	db.all(query, [], (err, users) => {
-		if (err) {
-			return res.status(500).json({ error: "Error fetching users." });
-		}
-		res.status(200).json({ users });
+		const userId = result.lastID;
+		const selectQuery = "SELECT * FROM users WHERE id = ?";
+		db.get(selectQuery, [userId], (err, user) => {
+			if (err) {
+				return res.status(500).json({ error: "Error fetching created user" });
+			}
+
+			return res.status(201).json(user);
+		});
 	});
 };
 
@@ -69,19 +67,44 @@ exports.updateUserName = (req, res, next) => {
 		if (err) {
 			return res.status(500).json({ error: "Error updating user name." });
 		}
-		res.status(200).json({ message: "User name updated successfully." });
+		const query = "SELECT * FROM users WHERE id = ?";
+		const userId = id;
+		db.get(query, [userId], (err, user) => {
+			if (err) {
+				return res.status(500).json({ error: "Error fetching user by id." });
+			}
+
+			if (!user) {
+				return res.status(404).json({ error: "User not found." });
+			}
+
+			res.status(200).json(user);
+		});
 	});
 };
 
 exports.deleteUserById = (req, res, next) => {
 	const { id } = req.params;
 
-	// Delete the user from the "users" table by ID
-	const query = "DELETE FROM users WHERE id = ?";
-	db.run(query, [id], err => {
+	const selectSql = "SELECT * FROM users WHERE id = ?";
+
+	db.get(selectSql, [id], (err, user) => {
 		if (err) {
-			return res.status(500).json({ error: "Error deleting user." });
+			return res.status(500).json({ error: "Error fetching user to delete" });
 		}
-		res.status(200).json({ message: "User deleted successfully." });
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		const deleteSql = "DELETE FROM users WHERE id = ?";
+
+		db.run(deleteSql, [id], err => {
+			if (err) {
+				return res.status(500).json({ error: "Error deleting user" });
+			}
+
+			return res.status(200).json(user); // Return the deleted user
+		});
 	});
 };
