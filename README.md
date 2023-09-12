@@ -82,7 +82,7 @@ Once the server is running, you can use API client tools (e.g., Postman, cURL) t
   - `name` (string, required): The new name for the user.
 - Response
 
-  - `200 OK` A an JSON object containing the details of the created user is returned is returned.
+  - `200 OK` A an JSON object containing the details of the updated user is returned is returned.
   - `400 Bad Request` if the request is invalid E.g The name passed is not a string, or the name is not passed at all.
   - `404 Not Found` if the user with the specified ID is not found.
   - `500 Internal Server Error` if there is an issue with database operations.
@@ -94,6 +94,6 @@ Once the server is running, you can use API client tools (e.g., Postman, cURL) t
 - Request Parameters:
   - `id` (integer, required): The ID of the user to update.
 - Response
-  - `200 OK` A an JSON object containing the details of the created user is returned is returned.
+  - `200 OK` A an JSON object containing the details of the created deleted is returned is returned.
   - `404 Not Found` if the user with the specified ID is not found.
   - `500 Internal Server Error` if there is an issue with database operations
