@@ -4,10 +4,6 @@ const userControllers = require("../controller/userController");
 
 const router = express.Router();
 
-router.get("/api", (res, req, next) => {
-	res.send("Api is Running");
-});
-
 // get a user using the user id
 router.get("/api/:id", userControllers.getUserById);
 
