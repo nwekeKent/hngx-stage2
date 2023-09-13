@@ -123,6 +123,7 @@ Content-Type: application/json
 "id": 1,
  "name": "John Doe
 }
+
 ```
 
 ### Get User by ID
